@@ -26,7 +26,7 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	ball(Vec2(100.f, 100.f), 7.f, 100.f)
+	ball(Vec2(100.f, 100.f), 7.f, 500.f)
 {
 }
 
@@ -42,6 +42,9 @@ void Game::UpdateModel()
 {
 	float deltaTime = frameTimer.Mark();
 	ball.Update(deltaTime);
+	//Ball will always be overlapping with windowsBorder.
+	Rect windowsBorder = Rect(0.f, 0.f, Graphics::ScreenWidth, Graphics::ScreenHeight);
+	ball.HandleOverlap(windowsBorder);
 }
 
 void Game::ComposeFrame()
