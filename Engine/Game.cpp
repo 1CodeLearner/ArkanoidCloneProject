@@ -20,11 +20,13 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
+#include "Ball.h"
 
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	ball(Vec2(100.f, 100.f), 7.f, 100.f)
 {
 }
 
@@ -38,8 +40,11 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	float deltaTime = frameTimer.Mark();
+	ball.Update(deltaTime);
 }
 
 void Game::ComposeFrame()
 {
+	ball.Draw(gfx);
 }
