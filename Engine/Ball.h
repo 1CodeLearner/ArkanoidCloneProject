@@ -2,6 +2,7 @@
 #include "Vec2.h"
 #include "Rect.h"
 #include "Graphics.h"
+#include "Sound.h"
 class Ball
 {
 public:
@@ -10,7 +11,7 @@ public:
 public:
 	void Draw(Graphics& gfx);
 	void Update(float deltaTime);
-	void HandleOverlap(const Rect& otherRect);
+	void HandleOverlap(const Rect& otherRect, Sound& sound);
 
 private:
 	Rect GetRect() const;

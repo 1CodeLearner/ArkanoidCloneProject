@@ -20,13 +20,13 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
-#include "Ball.h"
 
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	ball(Vec2(100.f, 100.f), 7.f, 500.f)
+	ball(Vec2(100.f, 100.f), 7.f, 500.f),
+	sound(L"Sounds\\arkpad.wav")
 {
 }
 
@@ -44,7 +44,7 @@ void Game::UpdateModel()
 	ball.Update(deltaTime);
 	//Ball will always be overlapping with windowsBorder.
 	Rect windowsBorder = Rect(0.f, 0.f, Graphics::ScreenWidth, Graphics::ScreenHeight);
-	ball.HandleOverlap(windowsBorder);
+	ball.HandleOverlap(windowsBorder, sound);
 }
 
 void Game::ComposeFrame()

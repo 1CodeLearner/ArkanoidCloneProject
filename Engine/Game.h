@@ -23,6 +23,7 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "Sound.h"
 #include "Ball.h"
 #include "FrameTimer.h"
 
@@ -46,5 +47,6 @@ private:
 	/*  User Variables              */
 	Ball ball;
 	FrameTimer frameTimer;
+	Sound sound;
 	/********************************/
 };
