@@ -4,7 +4,8 @@ Paddle::Paddle(Vec2 _center, float _halfWidth, float _halfHeight, Color _color)
 	: center(_center), halfWidth(_halfWidth), halfHeight(_halfHeight), color(_color)
 {
 	moveDir = { 0.f, 0.f };
-	speed = 250.f;
+	speed = 350.f;
+	speedUp = 500.f;
 }
 
 void Paddle::Update(Keyboard& kbd, float deltaTime)
@@ -17,7 +18,13 @@ void Paddle::Update(Keyboard& kbd, float deltaTime)
 	{
 		moveDir = { -1.f, 0 };
 	}
-	center += moveDir * speed * deltaTime;
+	
+	float finalSpeed = speed;
+	if (kbd.KeyIsPressed(VK_SHIFT))
+	{
+		finalSpeed = speedUp;
+	}
+	center += moveDir * finalSpeed * deltaTime;
 	moveDir = { 0.f,0.f };
 
 	ClampToScreen();
@@ -28,10 +35,20 @@ void Paddle::HandleOverlap(Ball& ball, Sound& sound)
 	if ( ball.GetRect().CheckOverlap(GetRect()))
 	{
 		Rect ballRect = ball.GetRect();
-		if (ballRect.GetBottom() > GetRect().GetTop())
+		if (ball.GetRect().GetTop() > GetRect().GetTop()) {
+			ball.InverseX();
+		}
+		else if (ball.GetRect().GetRight() > GetRect().GetRight() ||
+			ball.GetRect().GetLeft() < GetRect().GetLeft() )
+		{
+			ball.InverseX();
+			ball.InverseY();
+		}
+		else 
 		{
 			ball.InverseY();
 		}
+		
 		sound.Play();
 	}
 }

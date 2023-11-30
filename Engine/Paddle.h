@@ -26,6 +26,7 @@ private:
 	
 	Vec2 moveDir;
 	float speed;
+	float speedUp; 
 
 	Color color; 
 
