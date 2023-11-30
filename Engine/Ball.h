@@ -11,7 +11,7 @@ public:
 public:
 	void Draw(Graphics& gfx);
 	void Update(float deltaTime);
-	void HandleOverlap(const Rect& otherRect, Sound& sound);
+	bool HandleOverlap(const Rect& otherRect, Sound& sound);
 	Rect GetRect() const;
 	void InverseX();
 	void InverseY();

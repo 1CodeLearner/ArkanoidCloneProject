@@ -65,21 +65,31 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	float deltaTime = frameTimer.Mark();
-
-	ball.Update(deltaTime);
-
-	paddle.Update(wnd.kbd, deltaTime);
-
-	//Ball will always be overlapping with gameBorder as long as the game is playing.
-	ball.HandleOverlap(gameBorder.GetBorderRect(), sound);
-
-	for (Brick& brick : bricks)
+	if (!isGameOver)
 	{
-		brick.HandleOverlap(ball, sound);
+		float deltaTime = frameTimer.Mark();
+
+		ball.Update(deltaTime);
+
+		paddle.Update(wnd.kbd, deltaTime);
+
+		//Ball will always be overlapping with gameBorder as long as the game is playing.
+		isGameOver = ball.HandleOverlap(gameBorder.GetBorderRect(), sound);
+		if (!isGameOver)
+		{
+			for (Brick& brick : bricks)
+			{
+				brick.HandleOverlap(ball, sound);
+			}
+
+			paddle.HandleOverlap(ball, sound);
+		}
+	}
+	else
+	{
+		
 	}
 
-	paddle.HandleOverlap(ball, sound);
 }
 
 void Game::ComposeFrame()
@@ -88,8 +98,10 @@ void Game::ComposeFrame()
 	{
 		brick.Draw(gfx);
 	}
-
-	ball.Draw(gfx);
+	if (!isGameOver)
+	{
+		ball.Draw(gfx);
+	}
 	
 	paddle.Draw(gfx);
 

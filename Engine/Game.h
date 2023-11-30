@@ -68,5 +68,6 @@ private:
 
 	FrameTimer frameTimer;
 	Border gameBorder;
+	bool isGameOver = false;
 	/********************************/
 };

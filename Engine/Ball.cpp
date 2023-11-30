@@ -28,10 +28,12 @@ void Ball::InverseY()
 	direction.y *= -1.f;
 }
 
-void Ball::HandleOverlap(const Rect& otherRect, Sound& sound)
+bool Ball::HandleOverlap(const Rect& otherRect, Sound& sound)
 {
+	bool isGameOver = false;
 	if (GetRect().CheckOverlap(otherRect)) {
 		//ball position changes only when the edges overlap.
+		//Game will end when ball reaches the bottom of game border.
 		Rect ballRect = GetRect();
 		if (ballRect.GetLeft() <= otherRect.GetLeft())
 		{
@@ -54,10 +56,10 @@ void Ball::HandleOverlap(const Rect& otherRect, Sound& sound)
 		if (ballRect.GetBottom() > otherRect.GetBottom())
 		{
 			centerLoc.y += otherRect.GetBottom() - ballRect.GetBottom();
-			InverseY();
-			sound.Play();
+			isGameOver = true;
 		}
 	}
+	return isGameOver;
 }
 
 Rect Ball::GetRect() const
