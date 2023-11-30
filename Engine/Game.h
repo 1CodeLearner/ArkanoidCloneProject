@@ -49,11 +49,12 @@ private:
 	/*  User Variables              */
 	Ball ball;
 
-	static constexpr int brickRow = 2;
-	static constexpr int brickColumn = 4;
+	static constexpr int brickRow = 4;
+	static constexpr int brickColumn = 8;
 	static constexpr int bricksTotal = brickRow * brickColumn;
 	static constexpr float brickHalfWidth = 30;
 	static constexpr float brickHalfHeight = 15;
+	static constexpr float brickSpacer = 2.f;
 	Vec2 bricksStartPos = { 200.f, 200.f };
 	Brick bricks[bricksTotal];
 

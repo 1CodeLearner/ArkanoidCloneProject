@@ -36,6 +36,14 @@ Game::Game(MainWindow& wnd)
 			int index = i * brickColumn + j;
 			float x = bricksStartPos.x + (2 * brickHalfWidth) * j;
 			float y = bricksStartPos.y + (2 * brickHalfHeight) * i;
+			if (i != 0 )
+			{
+				y += brickSpacer * i;
+			}
+			if (j != 0)
+			{
+				x += brickSpacer * j;
+			}
 			Vec2 newStartPos = Vec2(x, y);
 			Vec2 newCenter = Vec2(newStartPos.x + brickHalfWidth,
 				newStartPos.y + brickHalfHeight);
