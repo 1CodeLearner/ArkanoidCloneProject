@@ -32,9 +32,9 @@
 class Game
 {
 public:
-	Game( class MainWindow& wnd );
-	Game( const Game& ) = delete;
-	Game& operator=( const Game& ) = delete;
+	Game(class MainWindow& wnd);
+	Game(const Game&) = delete;
+	Game& operator=(const Game&) = delete;
 	void Go();
 private:
 	void ComposeFrame();
@@ -50,13 +50,15 @@ private:
 	Ball ball;
 
 	static constexpr int brickRow = 4;
-	static constexpr int brickColumn = 8;
+	static constexpr int brickColumn = 12;
 	static constexpr int bricksTotal = brickRow * brickColumn;
-	static constexpr float brickHalfWidth = 30;
-	static constexpr float brickHalfHeight = 15;
+	static constexpr float brickHalfWidth = 25;
+	static constexpr float brickHalfHeight = 12;
 	static constexpr float brickSpacer = 2.f;
-	Vec2 bricksStartPos = { 200.f, 200.f };
+	Vec2 bricksStartPos = { 100.f, 50.f };
 	Brick bricks[bricksTotal];
+	static constexpr int colorSize = 4;
+	Color colors[colorSize] = {Colors::Blue, Colors::Yellow, Colors::Green, Colors::Red};
 
 	Paddle paddle;
 

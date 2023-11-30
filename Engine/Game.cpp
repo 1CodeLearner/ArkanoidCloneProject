@@ -25,12 +25,14 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	ball(Vec2(100.f, 100.f), 7.f, 500.f),
-	paddle(Vec2(300.f, 500.f), 100, 25, Colors::Green),
+	ball(Vec2(100.f, 300.f), 7.f, 500.f),
+	paddle(Vec2(300.f, 500.f), 50, 15, Colors::Green),
 	sound(L"Sounds\\arkpad.wav")
 {
+	Color color;
 	for (int i = 0; i < brickRow; i++)
 	{
+		color = colors[i % colorSize];
 		for (int j = 0; j < brickColumn; j++)
 		{
 			int index = i * brickColumn + j;
@@ -47,7 +49,7 @@ Game::Game(MainWindow& wnd)
 			Vec2 newStartPos = Vec2(x, y);
 			Vec2 newCenter = Vec2(newStartPos.x + brickHalfWidth,
 				newStartPos.y + brickHalfHeight);
-			bricks[index] = Brick(newCenter, brickHalfWidth, brickHalfHeight, Colors::Blue);
+			bricks[index] = Brick(newCenter, brickHalfWidth, brickHalfHeight, color);
 		}
 	}
 }
