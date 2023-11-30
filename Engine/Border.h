@@ -5,10 +5,12 @@
 class Border
 {
 public:
-	Border(float _borderPadding = 0.f);
+	Border(Color _color, float _borderPadding = 0.f);
 	void Draw(Graphics& gfx);
-	Rect GetBorderRect();
+	Rect GetBorderRect() const;
 private:
+	Rect GetBorderRectPadded() const;
 	Rect windowsBorder = Rect(0.f, 0.f, Graphics::ScreenWidth, Graphics::ScreenHeight);
 	float borderPadding;
+	Color color;
 };

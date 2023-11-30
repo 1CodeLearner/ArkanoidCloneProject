@@ -1,23 +1,37 @@
 #include "Border.h"
 #include <assert.h>
 
-Border::Border(float _borderPadding)
-	: borderPadding(_borderPadding)
-{
-
-}
-
-void Border::Draw(Graphics& gfx)
-{
-
-}
-
-Rect Border::GetBorderRect()
+Border::Border(Color _color, float _borderPadding)
+	: color(_color), borderPadding(_borderPadding)
 {
 	assert(windowsBorder.GetLeft() + borderPadding >= 0);
 	assert(windowsBorder.GetRight() - borderPadding <= Graphics::ScreenWidth);
 	assert(windowsBorder.GetTop() + borderPadding >= 0);
 	assert(windowsBorder.GetBottom() - borderPadding <= Graphics::ScreenHeight);
+}
 
+void Border::Draw(Graphics& gfx)
+{
+	Rect padded = GetBorderRectPadded();
+	for (int i = 0; i < Graphics::ScreenHeight; i++) 
+	{
+		for (int j = 0; j < Graphics::ScreenWidth; j++)
+		{
+			if (!padded.CheckOverlap(Vec2(j, i)))
+			{
+				gfx.PutPixel(j, i, color);
+			}
+		}
+	}
+}
+
+Rect Border::GetBorderRect() const
+{
+	return GetBorderRectPadded();
+}
+
+//Privates/////////////////////////////////////////////////////////////////////
+Rect Border::GetBorderRectPadded() const
+{
 	return windowsBorder.GetPadded(-borderPadding);
 }

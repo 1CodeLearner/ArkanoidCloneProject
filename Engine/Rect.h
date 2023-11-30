@@ -11,7 +11,8 @@ public:
 	static Rect AtCenter(Vec2 center, float halfWidth, float halfHeight);
 public:
 	Rect GetPadded(float padding) const;
-	bool CheckOverlap(const Rect& other);
+	bool CheckOverlap(const Rect& other) const;
+	bool CheckOverlap(const Vec2 other) const;
 	float GetLeft() const;
 	float GetTop() const;
 	float GetRight() const;

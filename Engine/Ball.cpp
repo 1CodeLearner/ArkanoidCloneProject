@@ -31,7 +31,7 @@ void Ball::InverseY()
 void Ball::HandleOverlap(const Rect& otherRect, Sound& sound)
 {
 	if (GetRect().CheckOverlap(otherRect)) {
-		//HandleOverlap will change ball position only when edges overlap.
+		//ball position changes only when the edges overlap.
 		Rect ballRect = GetRect();
 		if (ballRect.GetLeft() <= otherRect.GetLeft())
 		{

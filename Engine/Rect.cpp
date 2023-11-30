@@ -28,12 +28,18 @@ Rect Rect::GetPadded(float padding) const
 	return Rect(left - padding, top - padding, right + padding, bottom + padding);
 }
 
-bool Rect::CheckOverlap(const Rect& other)
+bool Rect::CheckOverlap(const Rect& other) const
 {
 	//right > other.left || left < other.right ||
 	//	top < other.bottom || bottom > other.top;
 	return right > other.left && left < other.right
 		&& bottom > other.top && top < other.bottom;
+}
+
+bool Rect::CheckOverlap(const Vec2 other) const
+{
+	return other.x >= left && other.x <= right &&
+		other.y >= top && other.y <= bottom;
 }
 
 float Rect::GetLeft() const
