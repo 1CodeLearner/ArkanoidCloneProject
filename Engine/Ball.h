@@ -15,8 +15,7 @@ public:
 	Rect GetRect() const;
 	void InverseX();
 	void InverseY();
-private:
-	bool IsOverlapping(const Rect& otherRect);
+
 private:
 	Vec2 centerLoc;
 	float radius;

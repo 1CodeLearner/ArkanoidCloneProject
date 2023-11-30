@@ -11,9 +11,10 @@ bool Brick::HandleOverlap(Ball& ball, Sound& sound)
 	{
 		ball.InverseY();
 		isOverlapped = true;
+		sound.Play();
 	}
 
-	return isOverlapped;
+	return isOverlapped;	
 }
 
 void Brick::Draw(Graphics& gfx)

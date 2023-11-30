@@ -21,12 +21,13 @@
 #include "MainWindow.h"
 #include "Game.h"
 
-Game::Game( MainWindow& wnd )
+Game::Game(MainWindow& wnd)
 	:
-	wnd( wnd ),
-	gfx( wnd ),
+	wnd(wnd),
+	gfx(wnd),
 	ball(Vec2(100.f, 100.f), 7.f, 500.f),
 	brick(Vec2(550.f, 500.f), 100, 40, Colors::Gray),
+	paddle(Vec2(300.f, 500.f), 100, 25, Colors::Green),
 	sound(L"Sounds\\arkpad.wav")
 {
 }
@@ -42,11 +43,13 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	float deltaTime = frameTimer.Mark();
+	
 	ball.Update(deltaTime);
+	paddle.Update(wnd.kbd, deltaTime);
 	//Ball will always be overlapping with windowsBorder.
-	Rect windowsBorder = Rect(0.f, 0.f, Graphics::ScreenWidth, Graphics::ScreenHeight);
 	ball.HandleOverlap(windowsBorder, sound);
 	brick.HandleOverlap(ball, sound);
+	paddle.HandleOverlap(ball, sound);
 }
 
 void Game::ComposeFrame()
@@ -56,4 +59,5 @@ void Game::ComposeFrame()
 		brick.Draw(gfx);
 	}
 	ball.Draw(gfx);
+	paddle.Draw(gfx);
 }

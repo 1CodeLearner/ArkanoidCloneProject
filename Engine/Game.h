@@ -27,6 +27,7 @@
 #include "FrameTimer.h"
 #include "Ball.h"
 #include "Brick.h"
+#include "Paddle.h"
 
 class Game
 {
@@ -47,8 +48,11 @@ private:
 	/********************************/
 	/*  User Variables              */
 	Ball ball;
-	FrameTimer frameTimer;
 	Sound sound;
 	Brick brick;
+	Paddle paddle;
+
+	FrameTimer frameTimer;
+	Rect windowsBorder = Rect(0.f, 0.f, Graphics::ScreenWidth, Graphics::ScreenHeight);
 	/********************************/
 };

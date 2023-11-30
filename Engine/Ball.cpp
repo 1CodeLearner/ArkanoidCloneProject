@@ -17,11 +17,6 @@ void Ball::Update(float deltaTime)
 	centerLoc += direction.GetNormalized() * speed* deltaTime;
 }
 
-bool Ball::IsOverlapping(const Rect& otherRect)
-{
-	Rect ballRect = GetRect();
-	return ballRect.CheckOverlap(otherRect);
-}
 
 void Ball::InverseX()
 {
@@ -35,8 +30,8 @@ void Ball::InverseY()
 
 void Ball::HandleOverlap(const Rect& otherRect, Sound& sound)
 {
-	if (IsOverlapping(otherRect)) {
-		//HandleOverlap will change ball position only when edges of rect overlap.
+	if (GetRect().CheckOverlap(otherRect)) {
+		//HandleOverlap will change ball position only when edges overlap.
 		Rect ballRect = GetRect();
 		if (ballRect.GetLeft() <= otherRect.GetLeft())
 		{
