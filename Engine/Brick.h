@@ -10,16 +10,16 @@ class Brick
 {
 public: 
 	Brick() = default; 
-	Brick(Vec2 _origin, float _width, float _height, Color _color);
+	Brick(Vec2 _center, float _halfWidth, float _halfHeight, Color _color);
 	bool HandleOverlap(Ball& ball, Sound& sound);
 	void Draw(Graphics& gfx);
 	bool GetIsOverlapped() const;
 private:
 	Rect GetRect() const;
 private:
-	Vec2 origin; 
-	float width; 
-	float height; 
+	Vec2 center; 
+	float halfWidth; 
+	float halfHeight; 
 	Color color;
 	bool isOverlapped = false;
 };

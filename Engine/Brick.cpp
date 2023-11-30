@@ -1,7 +1,7 @@
 #include "Brick.h"
 
-Brick::Brick(Vec2 _origin, float _width, float _height, Color _color)
-	: origin(_origin), width(_width), height(_height), color(_color)
+Brick::Brick(Vec2 _center, float _halfWidth, float _halfHeight, Color _color)
+	: center(_center), halfWidth(_halfWidth), halfHeight(_halfHeight), color(_color)
 {
 }
 
@@ -30,5 +30,5 @@ bool Brick::GetIsOverlapped() const
 
 Rect Brick::GetRect() const
 {
-	return Rect(origin, width, height);
+	return Rect(center, halfWidth, halfHeight);
 }
