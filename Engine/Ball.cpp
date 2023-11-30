@@ -63,7 +63,6 @@ void Ball::HandleOverlap(const Rect& otherRect, Sound& sound)
 			sound.Play();
 		}
 	}
-		
 }
 
 Rect Ball::GetRect() const

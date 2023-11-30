@@ -12,12 +12,11 @@ public:
 	void Draw(Graphics& gfx);
 	void Update(float deltaTime);
 	void HandleOverlap(const Rect& otherRect, Sound& sound);
-
-private:
 	Rect GetRect() const;
-	bool IsOverlapping(const Rect& otherRect);
 	void InverseX();
 	void InverseY();
+private:
+	bool IsOverlapping(const Rect& otherRect);
 private:
 	Vec2 centerLoc;
 	float radius;
