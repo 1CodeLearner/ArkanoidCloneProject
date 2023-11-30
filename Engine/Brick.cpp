@@ -7,12 +7,13 @@ Brick::Brick(Vec2 _origin, float _width, float _height, Color _color)
 
 bool Brick::HandleOverlap(Ball& ball, Sound& sound)
 {
-	//if(GetRect().CheckOverlap(ball.GetRect()))
-	//{
-	//	if 
-	//}
+	if(!isOverlapped && GetRect().CheckOverlap(ball.GetRect()))
+	{
+		ball.InverseY();
+		isOverlapped = true;
+	}
 
-	return false;
+	return isOverlapped;
 }
 
 void Brick::Draw(Graphics& gfx)

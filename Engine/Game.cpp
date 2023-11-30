@@ -26,7 +26,7 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd ),
 	ball(Vec2(100.f, 100.f), 7.f, 500.f),
-	brick(Vec2(500.f, 500.f), 100, 40, Colors::Gray),
+	brick(Vec2(550.f, 500.f), 100, 40, Colors::Gray),
 	sound(L"Sounds\\arkpad.wav")
 {
 }
@@ -46,7 +46,7 @@ void Game::UpdateModel()
 	//Ball will always be overlapping with windowsBorder.
 	Rect windowsBorder = Rect(0.f, 0.f, Graphics::ScreenWidth, Graphics::ScreenHeight);
 	ball.HandleOverlap(windowsBorder, sound);
-	//brick.HandleOverlap(ball, sound);
+	brick.HandleOverlap(ball, sound);
 }
 
 void Game::ComposeFrame()
