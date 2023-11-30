@@ -67,13 +67,17 @@ void Game::UpdateModel()
 	float deltaTime = frameTimer.Mark();
 
 	ball.Update(deltaTime);
+
 	paddle.Update(wnd.kbd, deltaTime);
+
 	//Ball will always be overlapping with windowsBorder.
-	ball.HandleOverlap(windowsBorder, sound);
+	ball.HandleOverlap(gameBorder.GetBorderRect(), sound);
+
 	for (Brick& brick : bricks)
 	{
 		brick.HandleOverlap(ball, sound);
 	}
+
 	paddle.HandleOverlap(ball, sound);
 }
 
@@ -83,6 +87,8 @@ void Game::ComposeFrame()
 	{
 		brick.Draw(gfx);
 	}
+
 	ball.Draw(gfx);
+	
 	paddle.Draw(gfx);
 }

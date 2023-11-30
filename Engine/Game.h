@@ -28,6 +28,7 @@
 #include "Ball.h"
 #include "Brick.h"
 #include "Paddle.h"
+#include "Border.h"
 
 class Game
 {
@@ -41,6 +42,7 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
+
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -65,6 +67,6 @@ private:
 	Sound sound;
 
 	FrameTimer frameTimer;
-	Rect windowsBorder = Rect(0.f, 0.f, Graphics::ScreenWidth, Graphics::ScreenHeight);
+	Border gameBorder;
 	/********************************/
 };
