@@ -30,5 +30,5 @@ bool Brick::GetIsOverlapped() const
 
 Rect Brick::GetRect() const
 {
-	return Rect(center, halfWidth, halfHeight);
+	return Rect::AtCenter(center, halfWidth, halfHeight);
 }

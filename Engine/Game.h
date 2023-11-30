@@ -48,9 +48,18 @@ private:
 	/********************************/
 	/*  User Variables              */
 	Ball ball;
-	Sound sound;
-	Brick brick;
+
+	static constexpr int brickRow = 5;
+	static constexpr int brickColumn = 6;
+	static constexpr int bricksTotal = brickRow * brickColumn;
+	static constexpr float brickHalfWidth = 30;
+	static constexpr float brickHalfHeight = 15;
+	Vec2 bricksStartPos = { 200.f, 200.f };
+	Brick bricks[bricksTotal];
+
 	Paddle paddle;
+
+	Sound sound;
 
 	FrameTimer frameTimer;
 	Rect windowsBorder = Rect(0.f, 0.f, Graphics::ScreenWidth, Graphics::ScreenHeight);

@@ -1,5 +1,5 @@
-/****************************************************************************************** 
- *	Chili DirectX Framework Version 16.07.20											  *	
+/******************************************************************************************
+ *	Chili DirectX Framework Version 16.07.20											  *
  *	Game.cpp																			  *
  *	Copyright 2016 PlanetChili.net <http://www.planetchili.net>							  *
  *																						  *
@@ -26,15 +26,27 @@ Game::Game(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd),
 	ball(Vec2(100.f, 100.f), 7.f, 500.f),
-	brick(Vec2(550.f, 500.f), 100, 40, Colors::Gray),
 	paddle(Vec2(300.f, 500.f), 100, 25, Colors::Green),
 	sound(L"Sounds\\arkpad.wav")
 {
+	for (int i = 0; i < brickRow; i++)
+	{
+		for (int j = 0; j < brickColumn; j++)
+		{
+			int index = i * brickColumn + j;
+			float x = bricksStartPos.x + (2 * brickHalfWidth) * j;
+			float y = bricksStartPos.y + (2 * brickHalfHeight) * i;
+			Vec2 newStartPos = Vec2(x, y);
+			Vec2 newCenter = Vec2(newStartPos.x + brickHalfWidth, 
+				newStartPos.y + brickHalfHeight);
+			bricks[index] = Brick(newCenter, brickHalfWidth, brickHalfHeight, Colors::Blue);
+		}
+	}
 }
 
 void Game::Go()
 {
-	gfx.BeginFrame();	
+	gfx.BeginFrame();
 	UpdateModel();
 	ComposeFrame();
 	gfx.EndFrame();
@@ -43,18 +55,21 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	float deltaTime = frameTimer.Mark();
-	
+
 	ball.Update(deltaTime);
 	paddle.Update(wnd.kbd, deltaTime);
 	//Ball will always be overlapping with windowsBorder.
 	ball.HandleOverlap(windowsBorder, sound);
-	brick.HandleOverlap(ball, sound);
+	for (Brick brick : bricks)
+	{
+		brick.HandleOverlap(ball, sound);
+	}
 	paddle.HandleOverlap(ball, sound);
 }
 
 void Game::ComposeFrame()
 {
-	if(!brick.GetIsOverlapped())
+	for (Brick brick : bricks)
 	{
 		brick.Draw(gfx);
 	}
