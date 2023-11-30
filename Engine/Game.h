@@ -49,8 +49,8 @@ private:
 	/*  User Variables              */
 	Ball ball;
 
-	static constexpr int brickRow = 5;
-	static constexpr int brickColumn = 6;
+	static constexpr int brickRow = 2;
+	static constexpr int brickColumn = 4;
 	static constexpr int bricksTotal = brickRow * brickColumn;
 	static constexpr float brickHalfWidth = 30;
 	static constexpr float brickHalfHeight = 15;

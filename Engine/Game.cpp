@@ -37,7 +37,7 @@ Game::Game(MainWindow& wnd)
 			float x = bricksStartPos.x + (2 * brickHalfWidth) * j;
 			float y = bricksStartPos.y + (2 * brickHalfHeight) * i;
 			Vec2 newStartPos = Vec2(x, y);
-			Vec2 newCenter = Vec2(newStartPos.x + brickHalfWidth, 
+			Vec2 newCenter = Vec2(newStartPos.x + brickHalfWidth,
 				newStartPos.y + brickHalfHeight);
 			bricks[index] = Brick(newCenter, brickHalfWidth, brickHalfHeight, Colors::Blue);
 		}
@@ -60,7 +60,7 @@ void Game::UpdateModel()
 	paddle.Update(wnd.kbd, deltaTime);
 	//Ball will always be overlapping with windowsBorder.
 	ball.HandleOverlap(windowsBorder, sound);
-	for (Brick brick : bricks)
+	for (Brick& brick : bricks)
 	{
 		brick.HandleOverlap(ball, sound);
 	}
@@ -69,7 +69,7 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	for (Brick brick : bricks)
+	for (Brick& brick : bricks)
 	{
 		brick.Draw(gfx);
 	}
