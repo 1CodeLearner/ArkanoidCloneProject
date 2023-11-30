@@ -10,6 +10,7 @@ public:
 	Rect(float left, float top, float right, float bottom);
 	static Rect AtCenter(Vec2 center, float halfWidth, float halfHeight);
 public:
+	Rect GetPadded(float padding) const;
 	bool CheckOverlap(const Rect& other);
 	float GetLeft() const;
 	float GetTop() const;

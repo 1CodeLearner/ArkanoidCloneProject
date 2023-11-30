@@ -22,6 +22,12 @@ Rect Rect::AtCenter(Vec2 center, float halfWidth, float halfHeight)
 	return Rect(center - half, halfWidth*2, halfHeight*2);
 }
 
+Rect Rect::GetPadded(float padding) const
+{
+
+	return Rect(left - padding, top - padding, right + padding, bottom + padding);
+}
+
 bool Rect::CheckOverlap(const Rect& other)
 {
 	//right > other.left || left < other.right ||

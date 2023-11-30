@@ -27,6 +27,7 @@ Game::Game(MainWindow& wnd)
 	gfx(wnd),
 	ball(Vec2(100.f, 300.f), 7.f, 500.f),
 	paddle(Vec2(300.f, 500.f), 50, 15, Colors::Green),
+	gameBorder(10.f),
 	sound(L"Sounds\\arkpad.wav")
 {
 	Color color;
