@@ -53,6 +53,7 @@ void Paddle::HandleOverlap(Ball& ball, Sound& sound)
 			ball.InverseY();
 		}
 		
+
 		sound.Play();
 	}
 }
