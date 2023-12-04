@@ -64,7 +64,8 @@ private:
 
 	Paddle paddle;
 
-	Sound sound;
+	Sound padSound;
+	Sound brickSound;
 
 	FrameTimer frameTimer;
 	Border gameBorder;

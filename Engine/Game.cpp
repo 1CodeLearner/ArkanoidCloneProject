@@ -28,7 +28,8 @@ Game::Game(MainWindow& wnd)
 	ball(Vec2(100.f, 300.f), 7.f, 500.f),
 	paddle(Vec2(300.f, 500.f), 50, 15, Colors::Green),
 	gameBorder(Colors::Blue, 5.f),
-	sound(L"Sounds\\arkpad.wav")
+	padSound(L"Sounds\\arkpad.wav"),
+	brickSound(L"Sounds\\arkbrick.wav")
 {
 	Color color;
 	for (int i = 0; i < brickRow; i++)
@@ -74,22 +75,17 @@ void Game::UpdateModel()
 		paddle.Update(wnd.kbd, deltaTime);
 
 		//Ball will always be overlapping with gameBorder as long as the game is playing.
-		isGameOver = ball.HandleOverlap(gameBorder.GetBorderRect(), sound);
+		isGameOver = ball.HandleOverlap(gameBorder.GetBorderRect(), padSound);
 		if (!isGameOver)
 		{
 			for (Brick& brick : bricks)
 			{
-				brick.HandleOverlap(ball, sound);
+				brick.HandleOverlap(ball, brickSound);
 			}
 
-			paddle.HandleOverlap(ball, sound);
+			paddle.HandleOverlap(ball, padSound);
 		}
 	}
-	else
-	{
-		
-	}
-
 }
 
 void Game::ComposeFrame()
