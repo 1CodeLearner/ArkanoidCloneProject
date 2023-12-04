@@ -38,8 +38,12 @@ void Paddle::HandleOverlap(Ball& ball, Sound& sound)
 		if (ball.GetRect().GetTop() > GetRect().GetTop()) {
 			ball.InverseX();
 		}
-		else if (ball.GetRect().GetRight() > GetRect().GetRight() ||
-			ball.GetRect().GetLeft() < GetRect().GetLeft() )
+		else if (
+			ball.GetRect().GetRight() > GetRect().GetRight() 
+			&& ball.GetRect().GetLeft() > GetRect().GetLeft() ||
+			ball.GetRect().GetLeft() < GetRect().GetLeft() 
+			&& ball.GetRect().GetRight() < GetRect().GetRight()
+		)
 		{
 			ball.InverseX();
 			ball.InverseY();
