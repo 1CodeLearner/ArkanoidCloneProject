@@ -29,6 +29,7 @@
 #include "Brick.h"
 #include "Paddle.h"
 #include "Border.h"
+#include "MySprites.h"
 
 class Game
 {
@@ -42,7 +43,10 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
-
+	Vec2 AdjustForCenter(Vec2 TopLeft, int Width, int Height)
+	{
+		return Vec2(TopLeft.x - (float)Width / 2.f, TopLeft.y - (float)Height / 2.f);
+	}
 	/********************************/
 private:
 	MainWindow& wnd;
