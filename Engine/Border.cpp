@@ -17,7 +17,7 @@ void Border::Draw(Graphics& gfx)
 	{
 		for (int j = 0; j < Graphics::ScreenWidth; j++)
 		{
-			if (!padded.CheckOverlap(Vec2(j, i)) &&
+			if (!padded.CheckOverlap(Vec2((float)j, (float)i)) &&
 				i < padded.GetBottom()
 			)
 			{
@@ -33,7 +33,6 @@ Rect Border::GetBorderRect() const
 	return GetBorderRectPadded();
 }
 
-//Privates/////////////////////////////////////////////////////////////////////
 Rect Border::GetBorderRectPadded() const
 {
 	return windowsBorder.GetPadded(-borderPadding);

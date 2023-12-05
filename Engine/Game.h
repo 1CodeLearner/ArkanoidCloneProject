@@ -43,10 +43,6 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
-	Vec2 AdjustForCenter(Vec2 TopLeft, int Width, int Height)
-	{
-		return Vec2(TopLeft.x - (float)Width / 2.f, TopLeft.y - (float)Height / 2.f);
-	}
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -65,14 +61,15 @@ private:
 	Brick bricks[bricksTotal];
 	static constexpr int colorSize = 4;
 	Color colors[colorSize] = {Colors::Blue, Colors::Yellow, Colors::Green, Colors::Red};
-
-	Paddle paddle;
-
-	Sound padSound;
 	Sound brickSound;
-
-	FrameTimer frameTimer;
+	
+	Paddle paddle;
+	Sound padSound;
+	
 	Border gameBorder;
+	
+	FrameTimer frameTimer;
+	
 	bool isGameOver = false;
 	/********************************/
 };

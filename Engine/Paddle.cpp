@@ -34,7 +34,7 @@ void Paddle::HandleOverlap(Ball& ball, Sound& sound)
 		}
 		else if (CheckCornerHit(ball))
 		{
-			//Ball is hitting corner within inside of paddle. 
+			//Ball is hitting corner within bounds of paddle. 
 			if (std::signbit(ball.GetDirection().x) == 
 				std::signbit(ball.GetCenterLocation().x - center.x ) )
 			{
@@ -60,7 +60,7 @@ void Paddle::HandleOverlap(Ball& ball, Sound& sound)
 void Paddle::Draw(Graphics& gfx)
 {
 	Rect rect = GetRect();
-	gfx.DrawRect(rect.GetLeft(), rect.GetTop(), rect.GetRight(), rect.GetBottom(), color);
+	gfx.DrawRect((int)rect.GetLeft(), (int)rect.GetTop(), (int)rect.GetRight(), (int)rect.GetBottom(), color);
 }
 
 void Paddle::ResetHasCollided()

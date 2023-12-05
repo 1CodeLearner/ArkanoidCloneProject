@@ -11,6 +11,7 @@ class Brick
 public: 
 	Brick() = default; 
 	Brick(Vec2 _center, float _halfWidth, float _halfHeight, Color _color);
+	Brick& operator= (const Brick& other) = default;
 	~Brick();
 	bool CheckOverlap(Ball& ball, Sound& sound);
 	void Draw(Graphics& gfx);

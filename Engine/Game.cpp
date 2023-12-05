@@ -31,7 +31,7 @@ Game::Game(MainWindow& wnd)
 	padSound(L"Sounds\\arkpad.wav"),
 	brickSound(L"Sounds\\arkbrick.wav")
 {
-	
+	//Reset each brick's center location to create spaces between each other.
 	Color color;
 	for (int i = 0; i < brickRow; i++)
 	{

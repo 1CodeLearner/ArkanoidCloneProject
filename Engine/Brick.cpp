@@ -1,6 +1,7 @@
 #include "Brick.h"
 #include <cmath>
 #include <assert.h>
+
 Brick::Brick(Vec2 _center, float _halfWidth, float _halfHeight, Color _color)
 	: center(_center), halfWidth(_halfWidth), halfHeight(_halfHeight), color(_color)
 {
@@ -33,13 +34,13 @@ bool Brick::CheckOverlap(Ball& ball, Sound& sound)
 			{
 				ball.InverseX();
 				ball.InverseY();
-
 			}
 		}
 		else
 		{
 			ball.InverseY();
 		}
+
 		IsDestroyed = true;
 		sound.Play();
 		return true;
@@ -51,10 +52,8 @@ void Brick::Draw(Graphics& gfx)
 {
 	if (!IsDestroyed) {
 		Rect rect = GetRect();
-		gfx.DrawRect(rect.GetLeft(), rect.GetTop(), rect.GetRight(), rect.GetBottom(), color);
+		gfx.DrawRect((int)rect.GetLeft(), (int)rect.GetTop(), (int)rect.GetRight(), (int)rect.GetBottom(), color);
 	}
-	
-
 }
 
 bool Brick::GetIsDestroyed() const
@@ -95,7 +94,7 @@ bool Brick::ExecuteOverlap(Ball& ball, Sound& brickSound)
 		}
 		else if (CheckCornerHit(ball))
 		{
-			//Ball is hitting corner within inside of brick. 
+			//Ball is hitting corner within bounds of brick. 
 			if (std::signbit(ball.GetDirection().x) ==
 				std::signbit(ball.GetCenterLocation().x - pBrickToDestroy->center.x)
 			)
@@ -135,13 +134,12 @@ bool Brick::CheckCornerHit(const Ball& ball)
 	return ball.GetRect().GetRight() > tempRect.GetRight()
 		&& ball.GetRect().GetLeft() > tempRect.GetLeft() ||
 		ball.GetRect().GetLeft() < tempRect.GetLeft()
-		&& ball.GetRect().GetRight() < tempRect.GetRight();;
+		&& ball.GetRect().GetRight() < tempRect.GetRight();
 }
 
 Rect Brick::GetRect() const
 {
 	return Rect::CenterToRect(center, halfWidth, halfHeight);
 }
-
 
 Brick* Brick::pBrickToDestroy = nullptr;

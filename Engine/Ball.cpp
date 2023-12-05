@@ -14,9 +14,8 @@ void Ball::Draw(Graphics& gfx)
 
 void Ball::Update(float deltaTime)
 {
-	centerLoc += direction.GetNormalized() * speed* deltaTime;
+	centerLoc += direction.GetNormalized() * speed * deltaTime;
 }
-
 
 void Ball::InverseX()
 {
@@ -35,10 +34,12 @@ const Vec2 Ball::GetDirection() const
 
 bool Ball::CheckOverlap(const Rect& otherRect, Sound& sound, bool& isGameOver)
 {
+	//returns true for the Paddle to invoke ResetHasCollided() and allow ball to collide with Paddle again.
+	//Sets isGameOver to true when Ball overlaps with bottom of Border.
+
 	bool HasCollided = false;
 	if (GetRect().CheckOverlap(otherRect)) {
-		//ball position changes only when the edges overlap.
-		//Game will end when ball reaches the bottom of game border.
+
 		Rect ballRect = GetRect();
 		if (ballRect.GetLeft() <= otherRect.GetLeft())
 		{
@@ -72,7 +73,7 @@ bool Ball::CheckOverlap(const Rect& otherRect, Sound& sound, bool& isGameOver)
 
 Rect Ball::GetRect() const
 {
-	return Rect(centerLoc, radius );
+	return Rect(centerLoc, radius);
 }
 
 const Vec2 Ball::GetCenterLocation() const
