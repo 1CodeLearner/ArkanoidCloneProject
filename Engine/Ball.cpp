@@ -28,9 +28,14 @@ void Ball::InverseY()
 	direction.y *= -1.f;
 }
 
-bool Ball::HandleOverlap(const Rect& otherRect, Sound& sound)
+const Vec2 Ball::GetDirection() const
 {
-	bool isGameOver = false;
+	return direction;
+}
+
+bool Ball::CheckOverlap(const Rect& otherRect, Sound& sound, bool& isGameOver)
+{
+	bool HasCollided = false;
 	if (GetRect().CheckOverlap(otherRect)) {
 		//ball position changes only when the edges overlap.
 		//Game will end when ball reaches the bottom of game border.
@@ -40,18 +45,21 @@ bool Ball::HandleOverlap(const Rect& otherRect, Sound& sound)
 			centerLoc.x += otherRect.GetLeft() - ballRect.GetLeft();
 			InverseX();
 			sound.Play();
+			HasCollided = true;
 		}
 		if (ballRect.GetRight() > otherRect.GetRight())
 		{
 			centerLoc.x += otherRect.GetRight() - ballRect.GetRight();
 			InverseX();
 			sound.Play();
+			HasCollided = true;
 		}
 		if (ballRect.GetTop() <= otherRect.GetTop())
 		{
 			centerLoc.y += otherRect.GetTop() - ballRect.GetTop();
 			InverseY();
 			sound.Play();
+			HasCollided = true;
 		}
 		if (ballRect.GetBottom() > otherRect.GetBottom())
 		{
@@ -59,10 +67,15 @@ bool Ball::HandleOverlap(const Rect& otherRect, Sound& sound)
 			isGameOver = true;
 		}
 	}
-	return isGameOver;
+	return HasCollided;
 }
 
 Rect Ball::GetRect() const
 {
 	return Rect(centerLoc, radius );
+}
+
+const Vec2 Ball::GetCenterLocation() const
+{
+	return centerLoc;
 }

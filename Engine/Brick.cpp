@@ -5,14 +5,16 @@ Brick::Brick(Vec2 _center, float _halfWidth, float _halfHeight, Color _color)
 {
 }
 
-void Brick::HandleOverlap(Ball& ball, Sound& sound)
+bool Brick::CheckOverlap(Ball& ball, Sound& sound)
 {
 	if (!IsDestroyed && GetRect().CheckOverlap(ball.GetRect()))
 	{
 		ball.InverseY();
 		this->IsDestroyed = true;
 		sound.Play();
+		return true;
 	}
+	return false;
 }
 
 void Brick::Draw(Graphics& gfx)
@@ -32,5 +34,5 @@ bool Brick::GetIsDestroyed() const
 
 Rect Brick::GetRect() const
 {
-	return Rect::AtCenter(center, halfWidth, halfHeight);
+	return Rect::CenterToRect(center, halfWidth, halfHeight);
 }

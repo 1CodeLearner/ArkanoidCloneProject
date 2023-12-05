@@ -75,12 +75,18 @@ void Game::UpdateModel()
 		paddle.Update(wnd.kbd, deltaTime);
 
 		//Ball will always be overlapping with gameBorder as long as the game is playing.
-		isGameOver = ball.HandleOverlap(gameBorder.GetBorderRect(), padSound);
+		if( ball.CheckOverlap(gameBorder.GetBorderRect(), padSound, isGameOver) )
+		{
+			paddle.ResetHasCollided();
+		}
 		if (!isGameOver)
 		{
 			for (Brick& brick : bricks)
 			{
-				brick.HandleOverlap(ball, brickSound);
+				if (brick.CheckOverlap(ball, brickSound))
+				{
+					paddle.ResetHasCollided();
+				}
 			}
 
 			paddle.HandleOverlap(ball, padSound);

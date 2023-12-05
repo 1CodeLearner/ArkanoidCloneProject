@@ -11,7 +11,7 @@ class Brick
 public: 
 	Brick() = default; 
 	Brick(Vec2 _center, float _halfWidth, float _halfHeight, Color _color);
-	void HandleOverlap(Ball& ball, Sound& sound);
+	bool CheckOverlap(Ball& ball, Sound& sound);
 	void Draw(Graphics& gfx);
 	bool GetIsDestroyed() const;
 private:

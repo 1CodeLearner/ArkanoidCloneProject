@@ -16,7 +16,7 @@ Rect::Rect(float left, float top, float right, float bottom)
 {
 }
 
-Rect Rect::AtCenter(Vec2 center, float halfWidth, float halfHeight)
+Rect Rect::CenterToRect(Vec2 center, float halfWidth, float halfHeight)
 {
 	Vec2 half = { halfWidth, halfHeight };
 	return Rect(center - half, halfWidth*2, halfHeight*2);
