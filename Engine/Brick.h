@@ -14,6 +14,7 @@ public:
 	bool CheckOverlap(Ball& ball, Sound& sound);
 	void Draw(Graphics& gfx);
 	bool GetIsDestroyed() const;
+	bool CheckCornerHit(const Ball& ball) const;
 private:
 	Rect GetRect() const;
 private:
