@@ -18,9 +18,7 @@ void Border::Draw(Graphics& gfx)
 		for (int j = 0; j < Graphics::ScreenWidth; j++)
 		{
 			if (!padded.CheckOverlap(Vec2(j, i)) &&
-				i < padded.GetBottom() && 
-				j < padded.GetLeft() || 
-				j > padded.GetRight()
+				i < padded.GetBottom()
 			)
 			{
 
