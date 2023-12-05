@@ -108,10 +108,11 @@ void Game::ComposeFrame()
 	{
 		ball.Draw(gfx);
 	}
+	else 
+		MySprites::DrawGameOver(gfx);
 	
 	paddle.Draw(gfx);
 
 	gameBorder.Draw(gfx);
 
-	MySprites::DrawGameOver(gfx);
 }
