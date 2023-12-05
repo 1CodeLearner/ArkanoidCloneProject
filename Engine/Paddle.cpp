@@ -4,8 +4,7 @@ Paddle::Paddle(Vec2 _center, float _halfWidth, float _halfHeight, Color _color)
 	: center(_center), halfWidth(_halfWidth), halfHeight(_halfHeight), color(_color)
 {
 	moveDir = { 0.f, 0.f };
-	speed = 300.f;
-	speedUp = 500.f;
+	speed = 450.f;
 }
 
 void Paddle::Update(Keyboard& kbd, float deltaTime)
@@ -18,13 +17,7 @@ void Paddle::Update(Keyboard& kbd, float deltaTime)
 	{
 		moveDir = { -1.f, 0 };
 	}
-	
-	float finalSpeed = speed;
-	if (kbd.KeyIsPressed(VK_SHIFT))
-	{
-		finalSpeed = speedUp;
-	}
-	center += moveDir * finalSpeed * deltaTime;
+	center += moveDir * speed * deltaTime;
 	moveDir = { 0.f,0.f };
 
 	ClampToScreen();
